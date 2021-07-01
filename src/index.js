@@ -8,6 +8,8 @@ const family = {
     son: { name: 'George', age: 16 },
 };
 
+// Используя цикл for in:
+
 function deepFreeze(obj) {
     Object.freeze(obj);
     for (const item in obj) {
@@ -20,3 +22,18 @@ function deepFreeze(obj) {
 }
 
 deepFreeze(family);
+
+// Используя метод Object.values():
+
+function altDeepFreeze(obj) {
+    Object.freeze(obj);
+    const values = Object.values(obj);
+    for (const value of values) {
+        if (typeof value === 'object') {
+            altDeepFreeze(value);
+        }
+    }
+    return obj;
+}
+
+altDeepFreeze(family);
