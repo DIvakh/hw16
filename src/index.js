@@ -11,7 +11,7 @@ const family = {
 function deepFreeze(obj) {
     Object.freeze(obj);
     for (const value of Object.values(obj)) {
-        if (typeof value === 'object') {
+        if (typeof value === 'object' && value !== null) {
             deepFreeze(value);
         }
     }
